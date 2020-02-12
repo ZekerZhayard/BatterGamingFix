@@ -2,7 +2,7 @@ package io.github.zekerzhayard.battergamingfix.asm;
 
 import io.github.zekerzhayard.battergamingfix.asm.transformers.AbstractClassTransformer;
 import io.github.zekerzhayard.battergamingfix.asm.transformers.impl.BatterGamingTransformer;
-import io.github.zekerzhayard.battergamingfix.asm.transformers.impl.PacketSenderTransformer;
+import io.github.zekerzhayard.battergamingfix.asm.transformers.impl.EventHandlerTransformer;
 import io.github.zekerzhayard.battergamingfix.asm.transformers.impl.PlayerNameGetterTransformer;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
@@ -11,11 +11,11 @@ import org.objectweb.asm.tree.ClassNode;
 
 public class ClassTransformer implements IClassTransformer {
     private AbstractClassTransformer[] acts = new AbstractClassTransformer[] {
-            new BatterGamingTransformer(),
-            new PacketSenderTransformer(),
-            new PlayerNameGetterTransformer()
+        new BatterGamingTransformer(),
+        new EventHandlerTransformer(),
+        new PlayerNameGetterTransformer()
     };
-    
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
         for (AbstractClassTransformer act : this.acts) {
